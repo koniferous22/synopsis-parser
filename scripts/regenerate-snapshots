@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+
+project_path=$(realpath "$(dirname "$0")/..")
+project_executable="$project_path/bin/synopsis-parser"
+if [[ ! -x $project_executable ]];then
+    echo "Project not build" >&2
+    exit 1
+fi
+
+man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-init.json"
+man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-clone.json"
+man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git.json"

@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+project_path=$(realpath "$(dirname "$0")/..")
+
+man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
+man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
+man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
