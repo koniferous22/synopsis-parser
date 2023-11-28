@@ -38,7 +38,7 @@ Should produce [following output](./example.json)
 
 ## Example use-case
 
-tbd
+this repo - [Codeberg](https://codeberg.org/koniferous22/patched-git), [GitHub](https://github.com/koniferous22/patched-git)
 
 ## todo
 
