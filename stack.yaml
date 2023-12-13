@@ -20,9 +20,9 @@
 # resolver:
 #   url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/22.yaml
 
-# https://www.stackage.org/lts-21.14
-# compatible with ghc 9.4.7
-resolver: lts-21.14
+# https://www.stackage.org/lts-21.24
+# compatible with ghc 9.4.8
+resolver: lts-21.24
 
 
 # User packages to be built.
