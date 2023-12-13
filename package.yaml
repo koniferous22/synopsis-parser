@@ -1,7 +1,7 @@
 name:                synopsis-parser
 version:             0.1.0.0
 github:              "koniferous22/synopsis-parser"
-license:             GNU General Public License v3
+license:             GPLv3
 author:              "Author name here"
 maintainer:          "samuel.melkovic@gmail.com"
 copyright:           "2023 Author name here"
