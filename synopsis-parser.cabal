@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -12,7 +12,7 @@ bug-reports:    https://github.com/koniferous22/synopsis-parser/issues
 author:         Author name here
 maintainer:     samuel.melkovic@gmail.com
 copyright:      2023 Author name here
-license:        GPLv3
+license:        GPL-3
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
