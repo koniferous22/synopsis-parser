@@ -17,12 +17,12 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-# resolver:
+# resolver
 #   url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/22.yaml
 
-# https://www.stackage.org/lts-21.24
-# compatible with ghc 9.4.8
-resolver: lts-21.24
+# https://www.stackage.org/lts-23.0
+# compatible with ghc 9.8.4
+resolver: lts-23.0
 
 
 # User packages to be built.
