@@ -2,17 +2,19 @@
 set -euo pipefail
 
 function generate_test_data_linux() {
-    man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
-    man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
-    man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
+    local os_folder="linux"
+    man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git-init.txt"
+    man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git-clone.txt"
+    man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git.txt"
 }
 
 function generate_test_data_darwin() {
+    local os_folder="darwin"
     # `col -bx` related issue
     # https://stackoverflow.com/questions/56722611/grep-not-matching-certain-parts-of-man-page
-    man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
-    man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
-    man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
+    man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git-init.txt"
+    man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git-clone.txt"
+    man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/$os_folder/man-git.txt"
 }
 
 function main() {

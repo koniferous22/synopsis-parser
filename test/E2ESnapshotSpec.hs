@@ -38,19 +38,19 @@ snapshotTests =
     [ createSnapshotTest $
       SnapshotTest
         { snapshotTestLabel = "git"
-        , inputFile = "test-resources/input/man-git.txt"
-        , snapshotFile = "test-resources/__snapshots/git.json"
+        , inputFile = "test-resources/input/linux/man-git.txt"
+        , snapshotFile = "test-resources/__snapshots/linux/git.json"
         }
     , createSnapshotTest $
       SnapshotTest
         { snapshotTestLabel = "git-init"
-        , inputFile = "test-resources/input/man-git-init.txt"
-        , snapshotFile = "test-resources/__snapshots/git-init.json"
+        , inputFile = "test-resources/input/linux/man-git-init.txt"
+        , snapshotFile = "test-resources/__snapshots/linux/git-init.json"
         }
     , createSnapshotTest $
       SnapshotTest
         { snapshotTestLabel = "git-clone"
-        , inputFile = "test-resources/input/man-git-clone.txt"
-        , snapshotFile = "test-resources/__snapshots/git-clone.json"
+        , inputFile = "test-resources/input/linux/man-git-clone.txt"
+        , snapshotFile = "test-resources/__snapshots/linux/git-clone.json"
         }
     ]

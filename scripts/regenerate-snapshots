@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 function regenerate_snapshots_linux() {
-    man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-init.json"
-    man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-clone.json"
-    man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git.json"
+    local os_folder="linux"
+    man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git-init.json"
+    man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git-clone.json"
+    man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git.json"
 }
 
 function regenerate_snapshots_darwin() {
+    local os_folder="darwin"
     # `col -bx` related issue
     # https://stackoverflow.com/questions/56722611/grep-not-matching-certain-parts-of-man-page
-    man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-init.json"
-    man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-clone.json"
-    man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git.json"
+    man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git-init.json"
+    man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git-clone.json"
+    man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/$os_folder/git.json"
 }
 
 function main() {
