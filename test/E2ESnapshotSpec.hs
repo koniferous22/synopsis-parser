@@ -53,4 +53,22 @@ snapshotTests =
         , inputFile = "test-resources/input/linux/man-git-clone.txt"
         , snapshotFile = "test-resources/__snapshots/linux/git-clone.json"
         }
+    , createSnapshotTest $
+      SnapshotTest
+        { snapshotTestLabel = "git"
+        , inputFile = "test-resources/input/darwin/man-git.txt"
+        , snapshotFile = "test-resources/__snapshots/darwin/git.json"
+        }
+    , createSnapshotTest $
+      SnapshotTest
+        { snapshotTestLabel = "git-init"
+        , inputFile = "test-resources/input/darwin/man-git-init.txt"
+        , snapshotFile = "test-resources/__snapshots/darwin/git-init.json"
+        }
+    , createSnapshotTest $
+      SnapshotTest
+        { snapshotTestLabel = "git-clone"
+        , inputFile = "test-resources/input/darwin/man-git-clone.txt"
+        , snapshotFile = "test-resources/__snapshots/darwin/git-clone.json"
+        }
     ]
