@@ -7,6 +7,8 @@ function regenerate_snapshots_linux() {
 }
 
 function regenerate_snapshots_darwin() {
+    # `col -bx` related issue
+    # https://stackoverflow.com/questions/56722611/grep-not-matching-certain-parts-of-man-page
     man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-init.json"
     man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git-clone.json"
     man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | "$project_executable" > "$project_path/test-resources/__snapshots/git.json"

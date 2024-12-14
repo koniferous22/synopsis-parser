@@ -1,8 +1,6 @@
 # `synopsis-parser`
 
-Serializes linux man synopsis into json
-
-Experimental PoC, tested only on git commands
+Parses linux `man` synopsis, into `.json` format.
 
 ## Example
 
@@ -22,7 +20,7 @@ man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n 
                  [--depth <depth>] [--[no-]single-branch] [--no-tags]
                  [--recurse-submodules[=<pathspec>]] [--[no-]shallow-submodules]
                  [--[no-]remote-submodules] [--jobs <n>] [--sparse] [--[no-]reject-shallow]
-                 [--filter=<filter> [--also-filter-submodules]] [--] <repository>
+                 [--filter=<filter-spec>] [--also-filter-submodules]] [--] <repository>
                  [<directory>]
 
 ```
@@ -36,9 +34,25 @@ man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n 
 
 Should produce [following output](./example.json)
 
+### `darwin` differences
+
+1. `head` built-in by `darwin` doesn't support negative line count, `ghead` GNU variant has to be used, therefore on macOS, command above depends on `coreutils`
+2. `man` pages have to be preprocessed with `col -bx` before being piped into `awk`
+
+```sh
+# Install if missing
+brew install coreutils
+# darwin equivalent of command above
+man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 | ./bin/synopsis-parser | jq
+```
+
 ## Example use-case
 
 this repo - [Codeberg](https://codeberg.org/koniferous22/patched-git), [GitHub](https://github.com/koniferous22/patched-git)
+
+## Disclaimer
+
+Experimental PoC, tested only on `git` commands for personal use
 
 ## todo
 

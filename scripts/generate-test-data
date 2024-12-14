@@ -8,6 +8,8 @@ function generate_test_data_linux() {
 }
 
 function generate_test_data_darwin() {
+    # `col -bx` related issue
+    # https://stackoverflow.com/questions/56722611/grep-not-matching-certain-parts-of-man-page
     man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
     man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
     man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
