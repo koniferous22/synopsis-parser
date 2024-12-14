@@ -1,7 +1,33 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-project_path=$(realpath "$(dirname "$0")/..")
+function generate_test_data_linux() {
+    man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
+    man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
+    man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
+}
 
-man git-init  | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
-man git-clone | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
-man git       | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | head -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
+function generate_test_data_darwin() {
+    man git-init  | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-init.txt"
+    man git-clone | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git-clone.txt"
+    man git       | col -bx | awk '/^SYNOPSIS/,/^DESCRIPTION/ {print}' | ghead -n -1 | tail -n +2 > "$project_path/test-resources/input/man-git.txt"
+}
+
+function main() {
+    local project_path=$(realpath "$(dirname "$0")/..")
+    local os_name="$(uname)"
+    if [[ $os_name == "Darwin" && ! "$(which "ghead" 2>/dev/null)" ]]; then
+        echo "\"coreutils\" not installed - \"ghead\" command missing" >&2
+        return 1
+    fi
+    if [[ $os_name == "Linux" ]]; then
+        generate_test_data_linux
+    elif [[ $os_name == "Darwin" ]]; then
+        generate_test_data_darwin
+    else
+        echo "Unsupported OS detected" 1>&2
+        return 1
+    fi
+}
+
+main "$@"
